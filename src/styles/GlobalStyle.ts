@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { AppProps } from '../App';
 
 const GlobalStyle =  createGlobalStyle`
   * {
@@ -6,11 +7,14 @@ const GlobalStyle =  createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif; 
+    font-family: ${(props: AppProps): string => props.theme.font.family};
+    font-size: ${(props: AppProps): string => props.theme.font.size};
   }
+  
   #root {
     margin: 0 auto;
+    background-color: ${(props: AppProps): string => props.theme.colors.darkGray};
   }
- `;
+`;
 
 export default GlobalStyle;
