@@ -19,8 +19,8 @@ const StakingStrategies = (): JSX.Element => {
         <StepHeader title="Step 2" description="Specify Staking Strategies"/>
         <MexEgldToggle />
       </HeaderContainer>
-      <br/>
       <StrategySettings />
+      <div style={{marginTop: "100px"}}/>
       <StakingRewards />
     </Step>
   )
