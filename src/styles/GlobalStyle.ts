@@ -14,6 +14,7 @@ const GlobalStyle =  createGlobalStyle`
   #root {
     margin: 0 auto;
     background-color: ${(props: AppProps): string => props.theme.colors.darkGray};
+    color: white;
   }
 `;
 
