@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { AppProps } from '../App';
 
 const GlobalStyle =  createGlobalStyle`
-  * {
+  body {
     margin: 0;
     padding: 0;
     outline: 0;
