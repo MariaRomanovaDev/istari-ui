@@ -50,6 +50,9 @@ const StrategySettings = types.
         console.error('Fetch Providers: ', e);
       }
     }),
+    setOwningEgldOnly(ownEgldOnly: boolean): void {
+      self.ownEgldOnly = ownEgldOnly;
+    },
   })
 );
 
