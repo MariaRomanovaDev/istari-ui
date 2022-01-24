@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const HeaderDescription = styled.span`
-  font-weight: 400;
+  font-weight: normal;
 `;
 
 const HeaderComponent = styled.div`
   font-size: 2rem;
-  font-weight: bold;
+`;
+const Delimiter = styled.span`
+  margin-right: 20px;
+  margin-left: 20px;
 `;
 
 interface Props {
@@ -17,7 +20,10 @@ interface Props {
 
 const Header = ({title, description}: Props): JSX.Element => {
   return (
-    <HeaderComponent>{title}<HeaderDescription>{description}</HeaderDescription></HeaderComponent>)
+    <HeaderComponent>
+      {title}<Delimiter>|</Delimiter><HeaderDescription>{description}</HeaderDescription>
+    </HeaderComponent>
+  )
 };
 
 export default Header;
