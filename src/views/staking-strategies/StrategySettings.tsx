@@ -8,12 +8,42 @@ import MexIcon from '-!svg-react-loader?name=Icon!../../icons/fake-mex.svg';
 import EgldIcon from '-!svg-react-loader?name=Icon!../../icons/egld.svg';
 import Price from './Price';
 import styled from 'styled-components';
+import { AppProps } from '../../App';
 
 setConfiguration({ defaultScreenClass: 'xl', gutterWidth: 0 });
 
 const Title = styled(Row)`
   height: 36px;
   line-height: 36px;
+  
+  &.with-padding {
+    padding-top: 20px !important; // to override react-grid-system styles
+  }
+`;
+
+const StyledCol = styled(Col)`
+  padding: 0 8px !important; // to override react-grid-system styles
+  
+  &.first-setting {
+    padding-left: 0px !important; // to override react-grid-system styles
+    padding-right: 16px !important;
+  }
+  &.last-setting {
+    padding-right: 0px !important; // to override react-grid-system styles
+  }
+  ${Title} {
+        padding-top: 20px !important; // to override react-grid-system styles
+  }
+`;
+
+const Input = styled.input`
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid ${(props: AppProps): string => props.theme.colors.darkGray};
+  width: 100%;
+  padding: 0 10px 0 15px;
+  font-size: 16px;
+  color: ${(props: AppProps): string => props.theme.colors.darkGray};
 `;
 
 const StrategySettings = observer((): JSX.Element  => {
@@ -32,49 +62,37 @@ const StrategySettings = observer((): JSX.Element  => {
 
   return (
     <Container fluid>
-      <Row justify="between">
-        <Col xl={2}>
+      <Row>
+        <StyledCol xl="content" className="first-setting">
           <Title />
           <Row><Price description={egldDescription}><EgldIcon /></Price></Row>
-        </Col>
-        <Col xl={2}>
-          <Title>egldTokensInvested:</Title>
-          <Row><input value={egldTokensInvested} /></Row>
-        </Col>
-        <Col xl={1}>
-          <Title>egldPercentage:</Title>
-          <Row><input value={egldPercentage} /></Row>
-        </Col>
-        <Col xl={2}>
-          <Title>egldPriceTarget:</Title>
-          <Row><input value={egldPriceTarget} /></Row>
-        </Col>
-        <Col xl={5}>
-          <Title>dateFrom:</Title>
-          <Row>{dateFrom.toString()} dateTo: {dateTo.toString()}</Row>
-        </Col>
-      </Row>
-      <Row justify="between">
-        <Col>
-          <Title />
+          <Title className="with-padding"/>
           <Row><Price description={mexDescription}><MexIcon /></Price></Row>
-        </Col>
-        <Col xl={2}>
-          <Title>mexTokensInvested:</Title>
-          <Row><input value={mexTokensInvested} /></Row>
-        </Col>
-        <Col xl={1}>
-          <Title>mexPercentage:</Title>
-          <Row><input value={mexPercentage} /></Row>
-        </Col>
-        <Col xl={2}>
-          <Title>mexPriceTarget:</Title>
-          <Row><input value={mexPriceTarget} /></Row>
-        </Col>
-        <Col xl={5}>
-          <Title>stakingProviders: </Title>
-          <Row><input value={JSON.stringify(stakingProviders)} /></Row>
-        </Col>
+        </StyledCol>
+        <StyledCol xl={2}>
+          <Title>EGLD tokens invested:</Title>
+          <Row><Input value={egldTokensInvested} /></Row>
+          <Title className="with-padding">MEX tokens invested:</Title>
+          <Row><Input value={mexTokensInvested} /></Row>
+        </StyledCol>
+        <StyledCol xl={1}>
+          <Title>% in EGLD:</Title>
+          <Row><Input value={egldPercentage} /></Row>
+          <Title className="with-padding">% in MEX:</Title>
+          <Row><Input value={mexPercentage} /></Row>
+        </StyledCol>
+        <StyledCol xl={2}>
+          <Title>EGLD price target:</Title>
+          <Row><Input value={egldPriceTarget} /></Row>
+          <Title className="with-padding">MEX price target:</Title>
+          <Row><Input value={mexPriceTarget} /></Row>
+        </StyledCol>
+        <StyledCol className="last-setting">
+          <Title>Time monitored:</Title>
+          <Row><Input value={"dateFrom:" + dateFrom.toString() + "dateTo:" + dateTo.toString()} /></Row>
+          <Title className="with-padding">Choose a staking provider: </Title>
+          <Row><Input value={JSON.stringify(stakingProviders)} /></Row>
+        </StyledCol>
       </Row>
     </Container>
   )

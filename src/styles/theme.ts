@@ -18,7 +18,7 @@ export interface Theme {
 const theme: Theme = {
   font: {
     family: 'Krub, sans-serif',
-    size: '14px',
+    size: '16px',
   },
   colors: {
     darkGray: '#333333',
