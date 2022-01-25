@@ -4,10 +4,13 @@ import { useStore } from '../../stores/rootStore';
 
 const StakingRewards = observer((): JSX.Element  => {
   const { stakingStrategiesStore, strategySettingsStore } = useStore();
+  const { egldTokensInvested, mexTokensInvested, egldPercentage, mexPercentage, egldPriceTarget, mexPriceTarget,
+    dateFrom, dateTo, stakingProviders, ownEgldOnly } = strategySettingsStore;
 
   useEffect(() => {
     void stakingStrategiesStore.fetchStakingStrategies(strategySettingsStore.settings);
-  }, [strategySettingsStore.stakingProviders]);
+  }, [egldTokensInvested, mexTokensInvested, egldPercentage, mexPercentage, egldPriceTarget, mexPriceTarget,
+    dateFrom, dateTo, stakingProviders, ownEgldOnly]);
 
   return (
     <div>

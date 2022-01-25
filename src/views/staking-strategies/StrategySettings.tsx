@@ -8,11 +8,12 @@ import MexIcon from '-!svg-react-loader?name=Icon!../../icons/fake-mex.svg';
 import EgldIcon from '-!svg-react-loader?name=Icon!../../icons/egld.svg';
 import Price from './Price';
 import styled from 'styled-components';
-import { AppProps } from '../../App';
+import { Input, PercentSelect } from './components';
+import { ISelectProp } from './components/Select';
 
 setConfiguration({ defaultScreenClass: 'xl', gutterWidth: 0 });
 
-const Title = styled(Row)`
+const TitleRow = styled(Row)`
   height: 36px;
   line-height: 36px;
   
@@ -31,19 +32,6 @@ const StyledCol = styled(Col)`
   &.last-setting {
     padding-right: 0px !important; // to override react-grid-system styles
   }
-  ${Title} {
-        padding-top: 20px !important; // to override react-grid-system styles
-  }
-`;
-
-const Input = styled.input`
-  height: 40px;
-  box-sizing: border-box;
-  border: 1px solid ${(props: AppProps): string => props.theme.colors.darkGray};
-  width: 100%;
-  padding: 0 10px 0 15px;
-  font-size: 16px;
-  color: ${(props: AppProps): string => props.theme.colors.darkGray};
 `;
 
 const StrategySettings = observer((): JSX.Element  => {
@@ -55,7 +43,18 @@ const StrategySettings = observer((): JSX.Element  => {
   }, [strategySettingsStore.stakingProviders]);
 
   const { mexPrice, egldPrice } = pricesStore;
-  const { egldTokensInvested, mexTokensInvested, egldPercentage, mexPercentage, egldPriceTarget, mexPriceTarget, dateFrom, dateTo, stakingProviders } = strategySettingsStore;
+  const {
+    egldTokensInvested,
+    mexTokensInvested,
+    egldPercentage,
+    mexPercentage,
+    egldPriceTarget,
+    mexPriceTarget,
+    dateFrom,
+    dateTo,
+    stakingProviders,
+    ownEgldOnly
+  } = strategySettingsStore;
 
   const egldDescription = 'EGLD Price: ' + egldPrice.toFixed(2) + ' $';
   const mexDescription = 'MEX Price: ' + mexPrice.toFixed(2) + ' $';
@@ -64,33 +63,47 @@ const StrategySettings = observer((): JSX.Element  => {
     <Container fluid>
       <Row>
         <StyledCol xl="content" className="first-setting">
-          <Title />
+          <TitleRow />
           <Row><Price description={egldDescription}><EgldIcon /></Price></Row>
-          <Title className="with-padding"/>
+          <TitleRow className="with-padding"/>
           <Row><Price description={mexDescription}><MexIcon /></Price></Row>
         </StyledCol>
         <StyledCol xl={2}>
-          <Title>EGLD tokens invested:</Title>
+          <TitleRow>EGLD tokens invested:</TitleRow>
           <Row><Input value={egldTokensInvested} /></Row>
-          <Title className="with-padding">MEX tokens invested:</Title>
+          <TitleRow className="with-padding">MEX tokens invested:</TitleRow>
           <Row><Input value={mexTokensInvested} /></Row>
         </StyledCol>
-        <StyledCol xl={1}>
-          <Title>% in EGLD:</Title>
-          <Row><Input value={egldPercentage} /></Row>
-          <Title className="with-padding">% in MEX:</Title>
-          <Row><Input value={mexPercentage} /></Row>
-        </StyledCol>
+        {ownEgldOnly && (
+          <StyledCol xl={1}>
+            <TitleRow>% in EGLD:</TitleRow>
+            <Row>
+              <PercentSelect
+                percent={egldPercentage}
+                name="egld"
+                onChange={(opt: ISelectProp): void => { strategySettingsStore.setEgldPercentage(opt.value); }}
+              />
+            </Row>
+            <TitleRow className="with-padding">% in MEX:</TitleRow>
+            <Row>
+              <PercentSelect
+                percent={mexPercentage}
+                name="mex"
+                onChange={(opt: ISelectProp): void => { strategySettingsStore.setMexPercentage(opt.value); }}
+              />
+            </Row>
+          </StyledCol>
+        )}
         <StyledCol xl={2}>
-          <Title>EGLD price target:</Title>
+          <TitleRow>EGLD price target:</TitleRow>
           <Row><Input value={egldPriceTarget} /></Row>
-          <Title className="with-padding">MEX price target:</Title>
+          <TitleRow className="with-padding">MEX price target:</TitleRow>
           <Row><Input value={mexPriceTarget} /></Row>
         </StyledCol>
         <StyledCol className="last-setting">
-          <Title>Time monitored:</Title>
+          <TitleRow>Time monitored:</TitleRow>
           <Row><Input value={"dateFrom:" + dateFrom.toString() + "dateTo:" + dateTo.toString()} /></Row>
-          <Title className="with-padding">Choose a staking provider: </Title>
+          <TitleRow className="with-padding">Choose a staking provider: </TitleRow>
           <Row><Input value={JSON.stringify(stakingProviders)} /></Row>
         </StyledCol>
       </Row>

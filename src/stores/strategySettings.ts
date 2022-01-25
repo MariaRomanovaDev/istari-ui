@@ -26,7 +26,7 @@ const StrategySettings = types.
         dateTo: new Date(self.dateTo),
         provider
       };
-    }
+    },
   }))
   .actions((self) => ({
     // eslint-disable-next-line consistent-return
@@ -52,6 +52,14 @@ const StrategySettings = types.
     }),
     setOwningEgldOnly(ownEgldOnly: boolean): void {
       self.ownEgldOnly = ownEgldOnly;
+    },
+    setEgldPercentage(egldPercentage: number): void {
+      self.egldPercentage = egldPercentage;
+      self.mexPercentage = 100 - egldPercentage;
+    },
+    setMexPercentage(mexPercentage: number): void {
+      self.mexPercentage = mexPercentage;
+      self.egldPercentage = 100 - mexPercentage;
     },
   })
 );

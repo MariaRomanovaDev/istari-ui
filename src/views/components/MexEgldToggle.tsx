@@ -8,6 +8,7 @@ import { useStore } from '../../stores/rootStore';
 const StyledToggle = styled(Toggle)`
   margin: 0 20px;
   
+  // overloading react-toggle styles
   .react-toggle-track {
     background-color: ${(props: AppProps): string => props.theme.colors.lightGreen};
     width: 40px;
@@ -22,6 +23,11 @@ const StyledToggle = styled(Toggle)`
     }
     .react-toggle-thumb {
       border: 2px solid ${(props: AppProps): string => props.theme.colors.shadedGreen};
+    }
+  }
+  &.react-toggle--checked {
+    .react-toggle-thumb {
+      left: 17px;
     }
   }
 `;
