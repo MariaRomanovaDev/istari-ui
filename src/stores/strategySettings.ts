@@ -27,6 +27,9 @@ const StrategySettings = types.
         provider
       };
     },
+    get activeStakingProvider(): IStakingProvider | undefined {
+      return self.stakingProviders.find(sp => sp.isActive)
+    }
   }))
   .actions((self) => ({
     // eslint-disable-next-line consistent-return
@@ -61,6 +64,9 @@ const StrategySettings = types.
       self.mexPercentage = mexPercentage;
       self.egldPercentage = 100 - mexPercentage;
     },
+    setActiveStakingProvider(activeValue: string): void {
+      self.stakingProviders.forEach(sp => sp.changeIsActive(sp.identity === activeValue))
+    }
   })
 );
 

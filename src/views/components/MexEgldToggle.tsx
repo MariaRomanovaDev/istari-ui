@@ -38,7 +38,7 @@ const Container = styled.div`
   font-size: 1rem;
 `;
 
-const MexEgldToggle = (): JSX.Element => {
+const MexEgldToggle: React.FC<Record<string, never>> = () => {
   const { strategySettingsStore } = useStore();
   const [ egldOnly, setEgldOnly ] = useState(strategySettingsStore.ownEgldOnly);
 

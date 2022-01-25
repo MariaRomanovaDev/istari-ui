@@ -8,8 +8,9 @@ import MexIcon from '-!svg-react-loader?name=Icon!../../icons/fake-mex.svg';
 import EgldIcon from '-!svg-react-loader?name=Icon!../../icons/egld.svg';
 import Price from './Price';
 import styled from 'styled-components';
-import { Input, PercentSelect } from './components';
-import { ISelectProp } from './components/Select';
+import { Input, PercentSelect, StakingProviderSelect } from './components';
+import { ISelectPercent } from './components/PercentSelect';
+import { IStakingProviderProp } from './components/StakingProviderSelect';
 
 setConfiguration({ defaultScreenClass: 'xl', gutterWidth: 0 });
 
@@ -81,7 +82,7 @@ const StrategySettings = observer((): JSX.Element  => {
               <PercentSelect
                 percent={egldPercentage}
                 name="egld"
-                onChange={(opt: ISelectProp): void => { strategySettingsStore.setEgldPercentage(opt.value); }}
+                onChange={(opt: ISelectPercent): void => { strategySettingsStore.setEgldPercentage(opt.value); }}
               />
             </Row>
             <TitleRow className="with-padding">% in MEX:</TitleRow>
@@ -89,7 +90,7 @@ const StrategySettings = observer((): JSX.Element  => {
               <PercentSelect
                 percent={mexPercentage}
                 name="mex"
-                onChange={(opt: ISelectProp): void => { strategySettingsStore.setMexPercentage(opt.value); }}
+                onChange={(opt: ISelectPercent): void => { strategySettingsStore.setMexPercentage(opt.value); }}
               />
             </Row>
           </StyledCol>
@@ -104,7 +105,13 @@ const StrategySettings = observer((): JSX.Element  => {
           <TitleRow>Time monitored:</TitleRow>
           <Row><Input value={"dateFrom:" + dateFrom.toString() + "dateTo:" + dateTo.toString()} /></Row>
           <TitleRow className="with-padding">Choose a staking provider: </TitleRow>
-          <Row><Input value={JSON.stringify(stakingProviders)} /></Row>
+          <Row>
+            <StakingProviderSelect
+              stakingProviders={stakingProviders}
+              activeStakingProvider={strategySettingsStore.activeStakingProvider}
+              onChange={(opt: IStakingProviderProp): void => { strategySettingsStore.setActiveStakingProvider(opt.value); }}
+            />
+          </Row>
         </StyledCol>
       </Row>
     </Container>

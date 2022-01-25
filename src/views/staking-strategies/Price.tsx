@@ -37,11 +37,11 @@ const Gradient = styled.div`
   padding-left: 36px; // 26px gradient margin + 26px half an icon + 10px for a padding
 `;
 
-interface IProps {
+interface Props {
   description: string;
 }
 
-const Price: React.FC<IProps> = ({ children, description }): JSX.Element => {
+const Price: React.FC<Props> = ({ children, description }) => {
   return (
     <PriceContainer>
       <Gradient>{description}</Gradient>

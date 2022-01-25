@@ -8,8 +8,8 @@ const StyledSelect = styled(Select)`
 `;
 
 export interface ISelectProp {
-  value: number;
-  label: number;
+  value: number | string;
+  label: number | string;
 }
 
 const selectStyles: StylesConfig<ISelectProp> = {

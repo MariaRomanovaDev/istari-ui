@@ -1,13 +1,18 @@
 import React from 'react';
-import Select, { ISelectProp } from './Select';
+import Select from './Select';
 
-interface IProps {
+interface Props {
   percent: number;
   name: string;
-  onChange: (o: ISelectProp) => void;
+  onChange: (o: ISelectPercent) => void;
 }
 
-const percentageOpts = ((): ISelectProp[] => {
+export interface ISelectPercent {
+  value: number;
+  label: number;
+}
+
+const percentageOpts = ((): ISelectPercent[] => {
   const opts = [];
   for(let i=0; i<=100; i++) {
     opts.push({value: i, label: i});
@@ -15,7 +20,7 @@ const percentageOpts = ((): ISelectProp[] => {
   return opts;
 })();
 
-const PercentSelect = ({ percent, name, onChange }: IProps): JSX.Element => {
+const PercentSelect: React.FC<Props> = ({ percent, name, onChange }: Props) => {
   return <Select value={percentageOpts[percent]} name={name} options={percentageOpts} onChange={onChange} />
 }
 

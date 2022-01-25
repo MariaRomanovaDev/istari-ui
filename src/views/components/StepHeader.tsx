@@ -18,7 +18,7 @@ interface Props {
   description: string;
 }
 
-const Header = ({title, description}: Props): JSX.Element => {
+const Header: React.FC<Props> = ({title, description}: Props) => {
   return (
     <HeaderComponent>
       {title}<Delimiter>|</Delimiter><HeaderDescription>{description}</HeaderDescription>
