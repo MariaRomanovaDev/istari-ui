@@ -8,7 +8,7 @@ import MexIcon from '-!svg-react-loader?name=Icon!../../icons/fake-mex.svg';
 import EgldIcon from '-!svg-react-loader?name=Icon!../../icons/egld.svg';
 import Price from './Price';
 import styled from 'styled-components';
-import { Input, PercentSelect, StakingProviderSelect } from './components';
+import { DatePicker, Input, PercentSelect, StakingProviderSelect } from './components';
 import { ISelectPercent } from './components/PercentSelect';
 import { IStakingProviderProp } from './components/StakingProviderSelect';
 
@@ -54,7 +54,7 @@ const StrategySettings = observer((): JSX.Element  => {
     dateFrom,
     dateTo,
     stakingProviders,
-    ownEgldOnly
+    ownEgldOnly,
   } = strategySettingsStore;
 
   const egldDescription = 'EGLD Price: ' + egldPrice.toFixed(2) + ' $';
@@ -136,7 +136,16 @@ const StrategySettings = observer((): JSX.Element  => {
         </StyledCol>
         <StyledCol className="last-setting">
           <TitleRow>Time monitored:</TitleRow>
-          <Row><input style={{height: '34px'}} value={"dateFrom:" + dateFrom.toString() + "dateTo:" + dateTo.toString()} /></Row>
+          <Row>
+            <DatePicker
+              onCalendarClose={(startDate, endDate): void => {
+                startDate && strategySettingsStore.setDateFrom(startDate);
+                endDate && strategySettingsStore.setDateTo(endDate);
+              }}
+              dateFrom={dateFrom}
+              dateTo={dateTo}
+            />
+          </Row>
           <TitleRow className="with-padding">Choose a staking provider: </TitleRow>
           <Row>
             <StakingProviderSelect

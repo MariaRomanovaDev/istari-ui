@@ -48,7 +48,6 @@ const StrategySettings = types.
             return StakingProvider.create({ identity: provider.identity, isActive })
           }
         ));
-        self.ownEgldOnly = !self.ownEgldOnly;
       } catch (e) {
         console.error('Fetch Providers: ', e);
       }
@@ -78,6 +77,12 @@ const StrategySettings = types.
     },
     setMexPriceTarget(mexPriceTarget: number): void {
       self.mexPriceTarget = mexPriceTarget;
+    },
+    setDateFrom(date: Date): void {
+      self.dateFrom = date;
+    },
+    setDateTo(date: Date): void {
+      self.dateTo = date;
     },
   })
 );
