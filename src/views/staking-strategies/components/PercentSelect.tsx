@@ -9,13 +9,13 @@ interface Props {
 
 export interface ISelectPercent {
   value: number;
-  label: number;
+  label: string;
 }
 
 const percentageOpts = ((): ISelectPercent[] => {
   const opts = [];
   for(let i=0; i<=100; i++) {
-    opts.push({value: i, label: i});
+    opts.push({value: i, label: `${i} %`});
   }
   return opts;
 })();

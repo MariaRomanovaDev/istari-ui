@@ -1,5 +1,7 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { AppProps } from '../../../App';
+import NumberFormat from 'react-number-format';
 
 export const inputCss = css`
   height: 40px;
@@ -10,9 +12,36 @@ export const inputCss = css`
   color: ${(props: AppProps): string => props.theme.colors.darkGray};
 `;
 
-const Input = styled.input`
+const StyledNumberFormat = styled(NumberFormat)`
   ${inputCss};
   padding: 0 10px 0 15px;
 `;
+
+interface Props {
+  inputValue: number;
+  onChange: (v: number) => void;
+  suffix?: string;
+}
+
+export const parserToFloat = (value: string): number => parseFloat(value.replace(',', '.'));
+
+const Input: React.FC<Props> = ({inputValue, onChange, suffix = ''}) => {
+  return (
+    <StyledNumberFormat
+      thousandsGroupStyle="thousand"
+      value={inputValue}
+      decimalSeparator="."
+      displayType="input"
+      type="text"
+      thousandSeparator={true}
+      allowNegative={true}
+      suffix={suffix}
+      decimalScale={2}
+      onValueChange={(values): void => {
+        const { value } = values;
+        onChange(parseFloat(value));
+      }}
+    />
+  )}
 
 export default Input;

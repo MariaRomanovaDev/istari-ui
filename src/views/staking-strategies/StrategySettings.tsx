@@ -71,9 +71,23 @@ const StrategySettings = observer((): JSX.Element  => {
         </StyledCol>
         <StyledCol xl={2}>
           <TitleRow>EGLD tokens invested:</TitleRow>
-          <Row><Input value={egldTokensInvested} /></Row>
+          <Row>
+            <Input
+              inputValue={egldTokensInvested}
+              onChange={(value): void => {
+                strategySettingsStore.setEgldTokensInvested(value);
+              }}
+            />
+          </Row>
           <TitleRow className="with-padding">MEX tokens invested:</TitleRow>
-          <Row><Input value={mexTokensInvested} /></Row>
+          <Row>
+            <Input
+              inputValue={mexTokensInvested}
+              onChange={(value): void => {
+                strategySettingsStore.setMexTokensInvested(value);
+              }}
+            />
+          </Row>
         </StyledCol>
         {ownEgldOnly && (
           <StyledCol xl={1}>
@@ -82,7 +96,9 @@ const StrategySettings = observer((): JSX.Element  => {
               <PercentSelect
                 percent={egldPercentage}
                 name="egld"
-                onChange={(opt: ISelectPercent): void => { strategySettingsStore.setEgldPercentage(opt.value); }}
+                onChange={(opt: ISelectPercent): void => {
+                  strategySettingsStore.setEgldPercentage(opt.value);
+                }}
               />
             </Row>
             <TitleRow className="with-padding">% in MEX:</TitleRow>
@@ -90,20 +106,37 @@ const StrategySettings = observer((): JSX.Element  => {
               <PercentSelect
                 percent={mexPercentage}
                 name="mex"
-                onChange={(opt: ISelectPercent): void => { strategySettingsStore.setMexPercentage(opt.value); }}
+                onChange={(opt: ISelectPercent): void => {
+                  strategySettingsStore.setMexPercentage(opt.value);
+                }}
               />
             </Row>
           </StyledCol>
         )}
         <StyledCol xl={2}>
           <TitleRow>EGLD price target:</TitleRow>
-          <Row><Input value={egldPriceTarget} /></Row>
+          <Row>
+            <Input
+              inputValue={egldPriceTarget}
+              suffix=" $"
+              onChange={(value): void => {
+                strategySettingsStore.setEgldPriceTarget(value);
+              }}
+          />
+          </Row>
           <TitleRow className="with-padding">MEX price target:</TitleRow>
-          <Row><Input value={mexPriceTarget} /></Row>
+          <Row>
+            <Input
+              inputValue={mexPriceTarget}
+              suffix=" $"
+              onChange={(value): void => {
+                strategySettingsStore.setMexPriceTarget(value);
+              }}
+            /></Row>
         </StyledCol>
         <StyledCol className="last-setting">
           <TitleRow>Time monitored:</TitleRow>
-          <Row><Input value={"dateFrom:" + dateFrom.toString() + "dateTo:" + dateTo.toString()} /></Row>
+          <Row><input style={{height: '34px'}} value={"dateFrom:" + dateFrom.toString() + "dateTo:" + dateTo.toString()} /></Row>
           <TitleRow className="with-padding">Choose a staking provider: </TitleRow>
           <Row>
             <StakingProviderSelect

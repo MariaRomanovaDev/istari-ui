@@ -66,7 +66,19 @@ const StrategySettings = types.
     },
     setActiveStakingProvider(activeValue: string): void {
       self.stakingProviders.forEach(sp => sp.changeIsActive(sp.identity === activeValue))
-    }
+    },
+    setEgldTokensInvested(egldTokensInvested: number): void {
+      self.egldTokensInvested = egldTokensInvested;
+    },
+    setMexTokensInvested(mexTokensInvested: number): void {
+      self.mexTokensInvested = mexTokensInvested;
+    },
+    setEgldPriceTarget(egldPriceTarget: number): void {
+      self.egldPriceTarget = egldPriceTarget;
+    },
+    setMexPriceTarget(mexPriceTarget: number): void {
+      self.mexPriceTarget = mexPriceTarget;
+    },
   })
 );
 

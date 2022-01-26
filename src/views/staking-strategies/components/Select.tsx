@@ -14,7 +14,8 @@ export interface ISelectProp {
 
 const selectStyles: StylesConfig<ISelectProp> = {
   control: (styles) => ({ ...styles, borderRadius: '0px' }),
-  indicatorSeparator: () => ({ display: 'none' })
+  indicatorSeparator: () => ({ display: 'none' }),
+  indicatorsContainer: () => ({ div: { paddingLeft: '0px' }})
 }
 
 // @ts-ignore: TODO: check how to work with Select types here https://react-select.com/typescript
