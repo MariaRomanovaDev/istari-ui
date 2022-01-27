@@ -9,6 +9,7 @@ const GlobalStyle =  createGlobalStyle`
     box-sizing: border-box;
     font-family: ${(props: AppProps): string => props.theme.font.family};
     font-size: ${(props: AppProps): string => props.theme.font.size};
+    font-weight: lighter;
   }
   
   #root {

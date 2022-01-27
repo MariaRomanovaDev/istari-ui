@@ -6,6 +6,7 @@ const PriceContainer = styled.div`
   position: relative;
   height: 40px;
   box-sizing: border-box;
+  font-weight: normal;
 `;
 
 const IconContainer = styled.div`

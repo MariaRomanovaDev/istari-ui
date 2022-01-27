@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const HeaderDescription = styled.span`
-  font-weight: normal;
-`;
-
 const HeaderComponent = styled.div`
   font-size: 2rem;
 `;
@@ -21,7 +17,7 @@ interface Props {
 const Header: React.FC<Props> = ({title, description}: Props) => {
   return (
     <HeaderComponent>
-      {title}<Delimiter>|</Delimiter><HeaderDescription>{description}</HeaderDescription>
+      {title}<Delimiter>|</Delimiter><span>{description}</span>
     </HeaderComponent>
   )
 };

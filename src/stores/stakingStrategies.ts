@@ -15,7 +15,10 @@ const StakingStrategies = types.
       });
       if (!resp.ok) { throw yield resp.json() }
 
-      const strategies: IStakingStrategy[] = yield resp.json();
+      // strategies should be ordered due to design
+      const strategies: IStakingStrategy[] = (yield resp.json()).sort((a:IStakingStrategy, b:IStakingStrategy) => {
+        return a.order - b.order;
+      });
 
       self.stakingStrategies = cast(strategies.map(
         (strategy: IStakingStrategy) => StakingStrategy.create(strategy)

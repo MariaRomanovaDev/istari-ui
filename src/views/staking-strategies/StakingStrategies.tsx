@@ -20,7 +20,6 @@ const StakingStrategies = (): JSX.Element => {
         <MexEgldToggle />
       </HeaderContainer>
       <StrategySettings />
-      <div style={{marginTop: "100px"}}/>
       <StakingRewards />
     </Step>
   )

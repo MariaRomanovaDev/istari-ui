@@ -7,20 +7,31 @@ import MexIcon from '-!svg-react-loader?name=Icon!../../icons/fake-mex.svg';
 // @ts-ignore: TS2307: Cannot find module '-!svg-react-loader?name=Icon!../../icons/egld.svg' or its corresponding type declarations.
 import EgldIcon from '-!svg-react-loader?name=Icon!../../icons/egld.svg';
 import Price from './Price';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { DatePicker, Input, PercentSelect, StakingProviderSelect } from './components';
 import { ISelectPercent } from './components/PercentSelect';
 import { IStakingProviderProp } from './components/StakingProviderSelect';
 
-setConfiguration({ defaultScreenClass: 'xl', gutterWidth: 0 });
+setConfiguration({ defaultScreenClass: 'xl', gutterWidth: 0, gridColumns: 30 });
 
-const TitleRow = styled(Row)`
+const StyledContainer = styled(Container)`
+  margin-bottom: 60px;
+`;
+
+const titleRowCss = css`
   height: 36px;
   line-height: 36px;
   
   &.with-padding {
     padding-top: 20px !important; // to override react-grid-system styles
   }
+`;
+const TitleRow = styled(Row)`
+  ${titleRowCss}
+`;
+
+const TitleLikeDummy = styled.div`
+  ${titleRowCss}
 `;
 
 const StyledCol = styled(Col)`
@@ -57,19 +68,19 @@ const StrategySettings = observer((): JSX.Element  => {
     ownEgldOnly,
   } = strategySettingsStore;
 
-  const egldDescription = 'EGLD Price: ' + egldPrice.toFixed(2) + ' $';
-  const mexDescription = 'MEX Price: ' + mexPrice.toFixed(2) + ' $';
+  const egldDescription = 'EGLD price: ' + egldPrice.toFixed(2) + ' $';
+  const mexDescription = 'MEX price: ' + mexPrice.toFixed(2) + ' $';
 
   return (
-    <Container fluid>
+    <StyledContainer fluid>
       <Row>
-        <StyledCol xl="content" className="first-setting">
-          <TitleRow />
+        <StyledCol xl={6} className="first-setting">
+          <TitleLikeDummy />
           <Row><Price description={egldDescription}><EgldIcon /></Price></Row>
           <TitleRow className="with-padding"/>
           <Row><Price description={mexDescription}><MexIcon /></Price></Row>
         </StyledCol>
-        <StyledCol xl={2}>
+        <StyledCol xl={5}>
           <TitleRow>EGLD tokens invested:</TitleRow>
           <Row>
             <Input
@@ -90,7 +101,7 @@ const StrategySettings = observer((): JSX.Element  => {
           </Row>
         </StyledCol>
         {ownEgldOnly && (
-          <StyledCol xl={1}>
+          <StyledCol xl={3}>
             <TitleRow>% in EGLD:</TitleRow>
             <Row>
               <PercentSelect
@@ -113,7 +124,7 @@ const StrategySettings = observer((): JSX.Element  => {
             </Row>
           </StyledCol>
         )}
-        <StyledCol xl={2}>
+        <StyledCol xl={5}>
           <TitleRow>EGLD price target:</TitleRow>
           <Row>
             <Input
@@ -146,7 +157,7 @@ const StrategySettings = observer((): JSX.Element  => {
               dateTo={dateTo}
             />
           </Row>
-          <TitleRow className="with-padding">Choose a staking provider: </TitleRow>
+          <TitleRow className="with-padding">Choose a staking provider:</TitleRow>
           <Row>
             <StakingProviderSelect
               stakingProviders={stakingProviders}
@@ -156,7 +167,7 @@ const StrategySettings = observer((): JSX.Element  => {
           </Row>
         </StyledCol>
       </Row>
-    </Container>
+    </StyledContainer>
   )
 });
 
