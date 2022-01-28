@@ -9,6 +9,7 @@ const Step = styled.div`
   margin-right: auto;
   padding-left: 30px;
   padding-right: 30px;
+  padding-bottom: 90px;
   
   min-height: 500px;
   

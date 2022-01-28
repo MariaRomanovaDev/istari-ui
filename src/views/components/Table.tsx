@@ -33,6 +33,7 @@ const headerRowCss = css`
 
 const StyledContainer = styled(Container)`
   padding: 60px 0;
+  margin-bottom: 60px;
 `;
 export { StyledContainer as Container };
 

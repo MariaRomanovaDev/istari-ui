@@ -5,6 +5,27 @@ import styled, { css } from 'styled-components';
 import { Row } from 'react-grid-system';
 import { AppProps } from '../../App';
 import { grayText, rowCss, Container, CornerCell, DataCol, DataHeaderRow, DataRow, HeadersCol, TotalRow, topRoundedCorners } from '../components/Table';
+import { NextStepButton } from '../components/Button';
+// @ts-ignore: TS2307: Cannot find module '-!svg-react-loader?name=Icon!../../icons/down-arrow.svg' or its corresponding type declarations.
+import DownArrow from '-!svg-react-loader?name=Icon!../../icons/down-arrow.svg';
+import { Button } from '../components';
+
+const StyledDownArrow = styled(DownArrow)`
+  fill: ${(props: AppProps): string => props.theme.colors.green};
+  height: 30px;
+  display: block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+`;
+
+const StakeEgldCell = styled(Row)`
+  height: 80px;
+  background: transparent;
+  justify-content: flex-end !important;
+  padding-top: 30px;
+  box-sizing: border-box;
+`;
 
 const Header = styled.div`
   ${grayText}
@@ -91,6 +112,9 @@ const StakingRewards = observer((): JSX.Element  => {
             <DataRow>Total Balance in EGLD tokens</DataRow>
             <DataRow>Total Balance in MEX tokens</DataRow>
             <TotalRow>Total Balance in US $</TotalRow>
+            <StakeEgldCell>
+              <Button>Stake your EGLD</Button>
+            </StakeEgldCell>
           </HeadersCol>
           {stakingStrategiesStore.stakingStrategies.map(({
             tokenType, strategyName, egldTokens, mexTokens, usDollars,
@@ -118,6 +142,8 @@ const StakingRewards = observer((): JSX.Element  => {
           })}
         </Row>
       </Container>
+      <NextStepButton>Specify farming strategies</NextStepButton>
+      <StyledDownArrow />
     </>
   )
 });
