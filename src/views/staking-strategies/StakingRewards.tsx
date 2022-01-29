@@ -8,7 +8,8 @@ import { rowCss, Container, CornerCell, DataCol, DataHeaderRow, DataRow, Headers
 import { NextStepButton } from '../components/Button';
 // @ts-ignore: TS2307: Cannot find module '-!svg-react-loader?name=Icon!../../icons/info.svg' or its corresponding type declarations.
 import Info from '-!svg-react-loader?name=Icon!../../icons/info.svg';
-import { Button, DownArrow } from '../components';
+import { Button, DownArrow, DottedContainer } from '../components';
+import { ellipsis } from '../components/styles';
 
 const StakeEgldCell = styled(Row)`
   height: 80px;
@@ -37,11 +38,13 @@ const ProfitCell = styled(Row)`
   display: flex;
   
   .percent {
+    ${ellipsis}
     font-size: 22px;
     align-self: flex-end;
   }
   
   .description {
+    ${ellipsis}
     color: ${tableConsts.grayTableTextColor};
     font-size: 14px;
     align-self: flex-start;
@@ -100,13 +103,13 @@ const StakingRewards = observer((): JSX.Element  => {
         <Row>
           <BeautyContainerElement />
           <HeadersCol xl={6}>
-            <CornerCell>Total reward<Info /></CornerCell>
-            <DataRow>in EGLD tokens</DataRow>
-            <DataRow>in MEX tokens</DataRow>
-            <DataRow>in US $</DataRow>
-            <DataRow>Total Balance in EGLD tokens</DataRow>
-            <DataRow>Total Balance in MEX tokens</DataRow>
-            <TotalRow>Total Balance in US $</TotalRow>
+            <CornerCell><DottedContainer>Total reward<Info /></DottedContainer></CornerCell>
+            <DataRow><DottedContainer>in EGLD tokens</DottedContainer></DataRow>
+            <DataRow><DottedContainer>in MEX tokens</DottedContainer></DataRow>
+            <DataRow><DottedContainer>in US $</DottedContainer></DataRow>
+            <DataRow><DottedContainer>Total Balance in EGLD tokens</DottedContainer></DataRow>
+            <DataRow><DottedContainer>Total Balance in MEX tokens</DottedContainer></DataRow>
+            <TotalRow><DottedContainer>Total Balance in US $</DottedContainer></TotalRow>
             <StakeEgldCell>
               <Button>Stake your EGLD</Button>
             </StakeEgldCell>
@@ -125,12 +128,12 @@ const StakingRewards = observer((): JSX.Element  => {
               >
                 {+order === 0 ? <BeautyDataFirstColElement /> : <BeautyDataColElement />}
                 <DataHeaderRow tokenType={tokenType} strategyName={strategyName}/>
-                <DataRow>{egldTokens}</DataRow>
-                <DataRow>{mexTokens}</DataRow>
-                <DataRow>{usDollars}</DataRow>
-                <DataRow>{totalBalanceInEgld}</DataRow>
-                <DataRow>{totalBalanceInMex}</DataRow>
-                <TotalRow>{totalBalanceInDollars}</TotalRow>
+                <DataRow><DottedContainer>{egldTokens}</DottedContainer></DataRow>
+                <DataRow><DottedContainer>{mexTokens}</DottedContainer></DataRow>
+                <DataRow><DottedContainer>{usDollars}</DottedContainer></DataRow>
+                <DataRow><DottedContainer>{totalBalanceInEgld}</DottedContainer></DataRow>
+                <DataRow><DottedContainer>{totalBalanceInMex}</DottedContainer></DataRow>
+                <TotalRow><DottedContainer>{totalBalanceInDollars}</DottedContainer></TotalRow>
                 {+order !== 0 && (
                   <ProfitCell>
                     <div className="percent">{getFormattedPercent(profit)}</div>

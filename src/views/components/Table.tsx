@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Col, Container, Row } from 'react-grid-system';
 import { AppProps } from '../../App';
+import { ellipsis } from './styles';
 
 // TODO: add an instruction how to use table's elements
 
@@ -15,6 +16,7 @@ export const tableConsts = {
 
 // reusable styles
 export const rowCss = css`
+  ${ellipsis}
   padding: 0 15px;
   font-size: 14px;
   align-items: center !important;
@@ -40,6 +42,7 @@ const StyledContainer = styled(Container)`
 export { StyledContainer as Container };
 
 export const CornerCell = styled(Row)`
+  ${ellipsis}
   ${headerRowCss}
   align-items: start !important;
   
@@ -76,10 +79,6 @@ export const DataRow = styled(Row)`
   background-color: ${(props: AppProps): string => props.theme.colors.lightGray};
   &:nth-child(2n) {
     background-color: ${(props: AppProps): string => props.theme.colors.shadedGray};
-  }
-  
-  ${DataCol} & {
-    padding: 0;
   }
   
   ${DataCol}.${tableConsts.chosenStrategyClassName} & {

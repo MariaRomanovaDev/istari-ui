@@ -23,8 +23,7 @@ interface Props {
   suffix?: string;
 }
 
-export const parserToFloat = (value: string): number => parseFloat(value.replace(',', '.'));
-
+// TODO: investigate the most appropriate number of decimals symbols and use for decimalScale
 const Input: React.FC<Props> = ({inputValue, onChange, suffix = ''}) => {
   return (
     <StyledNumberFormat

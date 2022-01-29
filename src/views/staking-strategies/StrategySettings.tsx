@@ -30,7 +30,7 @@ const TitleRow = styled(Row)`
   ${titleRowCss}
 `;
 
-const TitleLikeDummy = styled.div`
+const TitleDummy = styled.div`
   ${titleRowCss}
 `;
 
@@ -68,14 +68,15 @@ const StrategySettings = observer((): JSX.Element  => {
     ownEgldOnly,
   } = strategySettingsStore;
 
-  const egldDescription = 'EGLD price: ' + egldPrice.toFixed(2) + ' $';
-  const mexDescription = 'MEX price: ' + mexPrice.toFixed(2) + ' $';
+  // TODO: investigate the most appropriate number of decimals symbols
+  const egldDescription = 'EGLD price: ' + egldPrice.toFixed(4) + ' $';
+  const mexDescription = 'MEX price: ' + mexPrice.toFixed(4) + ' $';
 
   return (
     <StyledContainer fluid>
       <Row>
         <StyledCol xl={6} className="first-setting">
-          <TitleLikeDummy />
+          <TitleDummy />
           <Row><Price description={egldDescription}><EgldIcon /></Price></Row>
           <TitleRow className="with-padding"/>
           <Row><Price description={mexDescription}><MexIcon /></Price></Row>

@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AppProps } from '../../App';
+import { ellipsis } from '../components/styles';
 
 const PriceContainer = styled.div`
   position: relative;
   height: 40px;
   box-sizing: border-box;
   font-weight: normal;
+  width: 100%;
 `;
 
+// TODO: use calc() and variables for calculations instead of magic numbers and comments
 const IconContainer = styled.div`
   position: absolute;
   width: 52px;
@@ -31,6 +34,7 @@ const IconContainer = styled.div`
 `;
 
 const Gradient = styled.div`
+  ${ellipsis}
   margin-left: 26px; // icon container width / 2
   line-height: 40px;
   height: 40px;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { DownDoubleArrow, Select, StepHeader } from '../components';
+import { DottedContainer, DownDoubleArrow, Select, StepHeader } from '../components';
 import { ISelectProp } from '../components/Select';
 import { Container, CornerCell, DataCol, DataHeaderRow, DataRow, HeadersCol, tableConsts } from '../components/Table';
 import { Row, Col } from 'react-grid-system';
@@ -16,7 +16,7 @@ import { NextStepButton } from '../components/Button';
 import { Range } from './components';
 import { useStore } from '../../stores/rootStore';
 import { observer } from 'mobx-react';
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const iconCss = css`
   height: 16px;
@@ -148,21 +148,21 @@ const ChoosingStrategies: React.FC = observer(() => {
       <Container fluid>
         <Row>
           <StyledHeadersCol xl={6}>
-            <CornerCell>Type of reward<Info /></CornerCell>
-            <DataRow>EGLD price gain/loss</DataRow>
-            <DataRow>EGLD Staking Rewards (APR)</DataRow>
-            <DataRow>EGLD Staking Rewards (APY)</DataRow>
+            <CornerCell><DottedContainer>Type of reward<Info /></DottedContainer></CornerCell>
+            <DataRow><DottedContainer>EGLD price gain/loss</DottedContainer></DataRow>
+            <DataRow><DottedContainer>EGLD Staking Rewards (APR)</DottedContainer></DataRow>
+            <DataRow><DottedContainer>EGLD Staking Rewards (APY)</DottedContainer></DataRow>
             <BeautyRow />
-            <DataRow>MEX Price gain/loss</DataRow>
-            <DataRow>MEX Staking Rewards (APR)</DataRow>
-            <DataRow>MEX Staking Rewards (APY)</DataRow>
+            <DataRow><DottedContainer>MEX Price gain/loss</DottedContainer></DataRow>
+            <DataRow><DottedContainer>MEX Staking Rewards (APR)</DottedContainer></DataRow>
+            <DataRow><DottedContainer>MEX Staking Rewards (APY)</DottedContainer></DataRow>
             <BeautyRow />
-            <DataRow>IkMEX Staking Rewards (APR)</DataRow>
-            <DataRow>IkMEX Staking Rewards (APY)</DataRow>
+            <DataRow><DottedContainer>IkMEX Staking Rewards (APR)</DottedContainer></DataRow>
+            <DataRow><DottedContainer>IkMEX Staking Rewards (APY)</DottedContainer></DataRow>
             <BeautyRow />
-            <DataRow>LP-Tokens + MEX-Farming (APR)</DataRow>
-            <DataRow>LP-Tokens + IkMEX-Farming (APR)</DataRow>
-            <DataRow>Rewards from Swap Fees</DataRow>
+            <DataRow><DottedContainer>LP-Tokens + MEX-Farming (APR)</DottedContainer></DataRow>
+            <DataRow><DottedContainer>LP-Tokens + IkMEX-Farming (APR)</DottedContainer></DataRow>
+            <DataRow><DottedContainer>Rewards from Swap Fees</DottedContainer></DataRow>
           </StyledHeadersCol>
           {strategies.map(({
              tokenType, strategyName, egldPriceGainLoss, egldArp, egldApy,
