@@ -24,16 +24,16 @@ const iconCss = css`
 const Truthy = styled(Check)`
   ${iconCss}
   fill: ${(props: AppProps): string => props.theme.colors.lightGreen};
-  
-  ${DataCol}.${tableConsts.chosenStrategyClassName} {
-    fill: ${(props: AppProps): string => props.theme.colors.lightGray} !important;
-  }
 `;
 
 const Falsy = styled(Forbidden)`
   ${iconCss}
   fill: ${tableConsts.grayTableTextColor};
   transform: rotate(90deg);
+  
+  ${DataCol}.${tableConsts.chosenStrategyClassName} & {
+    fill: ${(props: AppProps): string => props.theme.colors.lightGray} !important;
+  }
 `;
 
 const getIcon = (val: boolean): JSX.Element => {
@@ -85,6 +85,31 @@ const StyledRangeContainer = styled(Container)`
   margin-top: 50px;
 `;
 
+const RangeCol = styled(Col)`
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  height: 30px;
+  display: flex;
+  align-items: center;
+`;
+
+const rangeDescriptionCss = css`
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 18px;
+`;
+
+const RangeLeftDescriptionCol = styled(Col)`
+  ${rangeDescriptionCss}
+  padding-left: 10px !important;
+`;
+
+const RangeRightDescriptionCol = styled(Col)`
+  ${rangeDescriptionCss}
+  text-align: right;
+  padding-right: 10px !important;
+`;
+
 const ChoosingStrategies: React.FC = observer(() => {
   const [value, setValue] = useState(currenciesOpts[0]);
   const { strategyRange } = useStore();
@@ -106,12 +131,17 @@ const ChoosingStrategies: React.FC = observer(() => {
       <StyledRangeContainer fluid>
         <Row>
           <Col xl={6} />
-          <Col style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+          <RangeLeftDescriptionCol xl={12}>Lower opportunity / Lower complexity</RangeLeftDescriptionCol>
+          <RangeRightDescriptionCol xl={12}>Higher opportunity / Higher complexity</RangeRightDescriptionCol>
+        </Row>
+        <Row>
+          <Col xl={6} />
+          <RangeCol>
             <Range
               values={strategyRange.rangeValues}
               onChange={ (values): void => strategyRange.setRange(values) }
             />
-          </Col>
+          </RangeCol>
         </Row>
       </StyledRangeContainer>
       <Container fluid>
