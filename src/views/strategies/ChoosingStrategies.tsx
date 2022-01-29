@@ -16,6 +16,7 @@ import { NextStepButton } from '../components/Button';
 import { Range } from './components';
 import { useStore } from '../../stores/rootStore';
 import { observer } from 'mobx-react';
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const iconCss = css`
   height: 16px;
@@ -195,8 +196,10 @@ const ChoosingStrategies: React.FC = observer(() => {
           })}
         </Row>
       </Container>
-      <NextStepButton>Specify staking strategies</NextStepButton>
-      <DownDoubleArrow />
+      <AnchorLink href='#staking-rewards'>
+        <NextStepButton>Specify staking strategies</NextStepButton>
+        <DownDoubleArrow />
+      </AnchorLink>
     </>
   )
 });

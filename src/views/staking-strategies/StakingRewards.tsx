@@ -95,7 +95,7 @@ const StakingRewards = observer((): JSX.Element  => {
 
   return (
     <>
-      <Header>Your Staking Rewards</Header>
+      <Header id="staking-rewards">Your Staking Rewards</Header>
       <StyledContainer fluid>
         <Row>
           <BeautyContainerElement />
