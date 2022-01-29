@@ -3,12 +3,14 @@ import { flow, Instance, types } from 'mobx-state-tree';
 import StrategySettings from './strategySettings';
 import StakingStrategies from './stakingStrategies';
 import Prices from './prices';
+import StrategyRange from './strategyRange';
 
 const RootStore = types
   .model('RootStore', {
     strategySettingsStore: types.optional(StrategySettings, {}),
     stakingStrategiesStore: types.optional(StakingStrategies, {}),
     pricesStore: types.optional(Prices, {}),
+    strategyRange: types.optional(StrategyRange, {}),
   })
   .actions(self => ({
   initializeStore: flow(function* initializeStore() {

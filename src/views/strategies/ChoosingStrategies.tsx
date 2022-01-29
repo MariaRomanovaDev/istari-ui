@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { DownDoubleArrow, Select, StepHeader } from '../components';
 import { ISelectProp } from '../components/Select';
 import { Container, CornerCell, DataCol, DataHeaderRow, DataRow, HeadersCol, tableConsts } from '../components/Table';
-import { Row } from 'react-grid-system';
+import { Row, Col } from 'react-grid-system';
 import { currenciesOpts, strategies } from './fakeStrategiesData';
 // @ts-ignore: TS2307: Cannot find module '-!svg-react-loader?name=Icon!../../icons/check.svg' or its corresponding type declarations.
 import Check from '-!svg-react-loader?name=Icon!../../icons/check.svg';
@@ -13,10 +13,14 @@ import Forbidden from '-!svg-react-loader?name=Icon!../../icons/forbidden.svg';
 import Info from '-!svg-react-loader?name=Icon!../../icons/info.svg';
 import { AppProps } from '../../App';
 import { NextStepButton } from '../components/Button';
+import { Range } from './components';
+import { useStore } from '../../stores/rootStore';
+import { observer } from 'mobx-react';
 
 const iconCss = css`
   height: 16px;
 `;
+
 const Truthy = styled(Check)`
   ${iconCss}
   fill: ${(props: AppProps): string => props.theme.colors.lightGreen};
@@ -55,7 +59,6 @@ const HeaderContainer = styled.div`
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  
   ${selectStyles}
 `;
 
@@ -74,8 +77,13 @@ const StyledHeadersCol = styled(HeadersCol)`
   }
 `;
 
-const ChoosingStrategies: React.FC = () => {
+const StyledRangeContainer = styled(Container)`
+  margin-top: 50px;
+`;
+
+const ChoosingStrategies: React.FC = observer(() => {
   const [value, setValue] = useState(currenciesOpts[0]);
+  const { strategyRange } = useStore();
 
   return (
     <>
@@ -91,6 +99,17 @@ const ChoosingStrategies: React.FC = () => {
         />
       </HeaderContainer>
       <StepHeader title="Step 1" description="Choose your strategies"/>
+      <StyledRangeContainer fluid>
+        <Row>
+          <Col xl={6} />
+          <Col style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+            <Range
+              values={strategyRange.rangeValues}
+              onChange={ (values): void => strategyRange.setRange(values) }
+            />
+          </Col>
+        </Row>
+      </StyledRangeContainer>
       <Container fluid>
         <Row>
           <StyledHeadersCol xl={6}>
@@ -142,6 +161,6 @@ const ChoosingStrategies: React.FC = () => {
       <DownDoubleArrow />
     </>
   )
-}
+});
 
 export default ChoosingStrategies;

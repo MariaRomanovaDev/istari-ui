@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
 interface IStyledRange {
-  from: number;
-  to: number;
+  values: number[];
+  onChange: (arr: number[]) => void;
 }
 
 const STEP = 1;
 const MIN = 0;
 const MAX = 6;
 
-const StyledRange: React.FC<IStyledRange> = ({from, to}) => {
-  const [values, setValues] = useState([from, to]);
+const StyledRange: React.FC<IStyledRange> = ({values, onChange}) => {
 
   return (
     <Range
@@ -19,7 +18,7 @@ const StyledRange: React.FC<IStyledRange> = ({from, to}) => {
       min={MIN}
       max={MAX}
       values={values}
-      onChange={(arr): void => setValues(arr)}
+      onChange={(currentValues): void => onChange(currentValues)}
       renderTrack={({ props, children }): JSX.Element => (
         <div
           // eslint-disable-next-line react/jsx-props-no-spreading
