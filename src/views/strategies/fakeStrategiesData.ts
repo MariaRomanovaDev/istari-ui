@@ -20,6 +20,7 @@ export interface IStrategy {
   lpTokensArp: boolean;
   lpTokensApy: boolean;
   swapFeeRewards: boolean;
+  order: number;
 }
 export const strategies: IStrategy[] = [
   {
@@ -36,6 +37,7 @@ export const strategies: IStrategy[] = [
     lpTokensArp: false,
     lpTokensApy: false,
     swapFeeRewards: false,
+    order: 0,
   },
   {
     tokenType: 'Egld',
@@ -51,6 +53,7 @@ export const strategies: IStrategy[] = [
     lpTokensArp: false,
     lpTokensApy: false,
     swapFeeRewards: false,
+    order: 1,
   },
   {
     tokenType: 'Egld',
@@ -66,6 +69,7 @@ export const strategies: IStrategy[] = [
     lpTokensArp: false,
     lpTokensApy: false,
     swapFeeRewards: false,
+    order: 2,
   },
   {
     tokenType: 'Mex',
@@ -81,6 +85,7 @@ export const strategies: IStrategy[] = [
     lpTokensArp: false,
     lpTokensApy: false,
     swapFeeRewards: false,
+    order: 3,
   },
   {
     tokenType: 'Mex',
@@ -96,6 +101,7 @@ export const strategies: IStrategy[] = [
     lpTokensArp: false,
     lpTokensApy: false,
     swapFeeRewards: false,
+    order: 4,
   },
   {
     tokenType: 'Egld-Esdt',
@@ -111,5 +117,6 @@ export const strategies: IStrategy[] = [
     lpTokensArp: true,
     lpTokensApy: true,
     swapFeeRewards: true,
+    order: 5,
   },
 ];

@@ -24,6 +24,10 @@ const iconCss = css`
 const Truthy = styled(Check)`
   ${iconCss}
   fill: ${(props: AppProps): string => props.theme.colors.lightGreen};
+  
+  ${DataCol}.${tableConsts.chosenStrategyClassName} {
+    fill: ${(props: AppProps): string => props.theme.colors.lightGray} !important;
+  }
 `;
 
 const Falsy = styled(Forbidden)`
@@ -132,10 +136,14 @@ const ChoosingStrategies: React.FC = observer(() => {
           {strategies.map(({
              tokenType, strategyName, egldPriceGainLoss, egldArp, egldApy,
              mexPriceGainLoss, mexArp, mexApy, ikMexArp, ikMexApy,
-             lpTokensArp, lpTokensApy, swapFeeRewards,
+             lpTokensArp, lpTokensApy, swapFeeRewards, order
            }) => {
             return (
-              <DataCol xl={4} key={tokenType + strategyName}>
+              <DataCol
+                className={strategyRange.isStrategyChosen(order) ? tableConsts.chosenStrategyClassName : ''}
+                xl={4}
+                key={tokenType + strategyName}
+              >
                 <div />
                 <DataHeaderRow tokenType={tokenType} strategyName={strategyName}/>
                 <DataRow>{getIcon(egldPriceGainLoss)}</DataRow>

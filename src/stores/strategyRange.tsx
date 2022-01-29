@@ -15,6 +15,9 @@ const StrategyRange = types.
       self.from = values[0];
       self.to = values[1];
     },
+    isStrategyChosen(order: number): boolean {
+      return (order >= self.from && order < self.to);
+    },
   }));
 
 export default StrategyRange;

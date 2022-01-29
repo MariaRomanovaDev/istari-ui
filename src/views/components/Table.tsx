@@ -10,6 +10,7 @@ export const tableConsts = {
   dataHeaderLength: '90px',
   grayTableTextColor: '#bbbbbb',
   topRoundedCorners: '10px 10px 0 0',
+  chosenStrategyClassName: 'chosen-strategy',
 };
 
 // reusable styles
@@ -57,6 +58,15 @@ export const CornerCell = styled(Row)`
   }
 `;
 
+export const DataCol = styled(Col)`
+  padding: 0 8px !important; // to override react-grid-system styles
+`;
+
+export const HeadersCol = styled(Col)`
+  padding: 0 8px !important; // to override react-grid-system styles
+  padding-left: 0px !important; // to override react-grid-system styles
+`;
+
 export const DataRow = styled(Row)`
   ${rowCss}
   height: 30px;
@@ -67,13 +77,24 @@ export const DataRow = styled(Row)`
   &:nth-child(2n) {
     background-color: ${(props: AppProps): string => props.theme.colors.shadedGray};
   }
-`;
-
-export const HeadersCol = styled(Col)`
-  padding: 0 8px !important; // to override react-grid-system styles
-  padding-left: 0px !important; // to override react-grid-system styles
   
-  ${DataRow} {
+  ${DataCol} & {
+    padding: 0;
+  }
+  
+  ${DataCol}.${tableConsts.chosenStrategyClassName} & {
+    background-color: ${(props: AppProps): string => props.theme.colors.green};
+    color: ${(props: AppProps): string => props.theme.colors.darkGray};
+    svg {
+      fill: ${(props: AppProps): string => props.theme.colors.darkGray};
+    }
+
+    &:nth-child(2n) {
+        background-color:  ${(props: AppProps): string => props.theme.colors.shadedGreen};
+    }
+  }
+  
+  ${HeadersCol} & {
     background-color: #595858;
     &:nth-child(2n) {
       background-color: ${(props: AppProps): string => props.theme.colors.lightGray};
@@ -89,14 +110,7 @@ export const HeadersCol = styled(Col)`
 
 export const TotalRow = styled(DataRow)`
   background-color: ${(props: AppProps): string => props.theme.colors.darkGray} !important;
-`;
-
-export const DataCol = styled(Col)`
-  padding: 0 8px !important; // to override react-grid-system styles
-  
-  ${DataRow} {
-    padding: 0;
-  }
+  color: white !important;
 `;
 
 // header for data columns
@@ -120,6 +134,10 @@ const StrategyDescriptionRow = styled(Row)`
   background-color: #595858 !important;
   padding: 0 15px !important;
   box-sizing: border-box;
+  
+  ${DataCol}.${tableConsts.chosenStrategyClassName} & {
+    background-color: ${(props: AppProps): string => props.theme.colors.darkGreen} !important;
+  }
 `;
 const StyledRow = styled(Row)`
     ${rowCss}

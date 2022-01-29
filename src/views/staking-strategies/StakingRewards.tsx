@@ -84,7 +84,7 @@ const getFormattedPercent = (profit: string): string => {
 }
 
 const StakingRewards = observer((): JSX.Element  => {
-  const { stakingStrategiesStore, strategySettingsStore } = useStore();
+  const { stakingStrategiesStore, strategySettingsStore, strategyRange } = useStore();
   const { egldTokensInvested, mexTokensInvested, egldPercentage, mexPercentage, egldPriceTarget, mexPriceTarget,
     dateFrom, dateTo, activeStakingProvider, ownEgldOnly } = strategySettingsStore;
 
@@ -117,7 +117,12 @@ const StakingRewards = observer((): JSX.Element  => {
             order
           }) => {
             return (
-              <DataCol xl={4} key={tokenType + strategyName}>
+              <DataCol
+                xl={4}
+                key={tokenType + strategyName}
+                className={strategyRange.rangeValues &&
+                  strategyRange.isStrategyChosen(order) ? tableConsts.chosenStrategyClassName : ''}
+              >
                 {+order === 0 ? <BeautyDataFirstColElement /> : <BeautyDataColElement />}
                 <DataHeaderRow tokenType={tokenType} strategyName={strategyName}/>
                 <DataRow>{egldTokens}</DataRow>
