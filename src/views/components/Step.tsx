@@ -9,13 +9,13 @@ const Step = styled.div`
   margin-right: auto;
   padding-left: 30px;
   padding-right: 30px;
-  padding-bottom: 90px;
+  margin-bottom: 3px;
   
   min-height: 500px;
-  
-  &:first-child {
-    border-radius: 10px 10px 0 0;
-  }
+`;
+
+export const FirstStep = styled(Step)`
+  border-radius: 10px 10px 0 0;
 `;
 
 export default Step;

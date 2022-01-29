@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from './Select';
+import Select from '../../components/Select';
 import { IStakingProvider } from '../../../stores/stakingProvider';
 
 export interface IStakingProviderProp {

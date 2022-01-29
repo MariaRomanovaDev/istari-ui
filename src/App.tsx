@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Theme } from './styles/theme';
 import { observer } from 'mobx-react';
 import RootStore, { StoreProvider, IRootStore } from './stores/rootStore';
-import StakingStrategies from './views/staking-strategies/StakingStrategies';
+import Comparing from './views/Comparing';
 
 export interface AppProps {
   theme: Theme
@@ -21,7 +21,7 @@ const App: React.FC = observer(() => {
     <StoreProvider value={rootStore}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <StakingStrategies />
+        <Comparing />
       </ThemeProvider>
     </StoreProvider>
   );

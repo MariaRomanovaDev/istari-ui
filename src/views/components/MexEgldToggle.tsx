@@ -17,7 +17,7 @@ const StyledToggle = styled(Toggle)`
     border: 2px solid ${(props: AppProps): string => props.theme.colors.lightGreen};
     background-color: ${(props: AppProps): string => props.theme.colors.gray};
   }
-  &:hover:not(.react-toggle--disabled) {
+  &&&:hover:not(.react-toggle--disabled) {
     .react-toggle-track {
       background-color: ${(props: AppProps): string => props.theme.colors.shadedGreen};
     }

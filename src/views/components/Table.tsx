@@ -5,13 +5,14 @@ import { AppProps } from '../../App';
 
 // TODO: add an instruction how to use table's elements
 
+// TODO: put here all the repeating constants or those on which something depends
+export const tableConsts = {
+  dataHeaderLength: '90px',
+  grayTableTextColor: '#bbbbbb',
+  topRoundedCorners: '10px 10px 0 0',
+};
+
 // reusable styles
-export const grayText = css`
-  color: #bbbbbb;
-`;
-export const topRoundedCorners = css`
-  border-radius: 10px 10px 0 0;
-`;
 export const rowCss = css`
   padding: 0 15px;
   font-size: 14px;
@@ -31,9 +32,9 @@ const headerRowCss = css`
   box-sizing: border-box;
 `;
 
+// styled table components
 const StyledContainer = styled(Container)`
-  padding: 60px 0;
-  margin-bottom: 60px;
+  margin: 60px 0;
 `;
 export { StyledContainer as Container };
 
@@ -42,11 +43,18 @@ export const CornerCell = styled(Row)`
   align-items: start !important;
   
   background-color: ${(props: AppProps): string => props.theme.colors.gray};
-  ${topRoundedCorners}
+  border-radius: ${tableConsts.topRoundedCorners};
   border-bottom: none;
   height: 90px;
   font-size: 18px;
   padding: 15px;
+  
+  svg {
+    fill: ${(props: AppProps): string => props.theme.colors.lightGray};
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+  }
 `;
 
 export const DataRow = styled(Row)`
@@ -102,7 +110,8 @@ const StakingNameRow = styled(Row)`
   font-size: 16px;
   box-sizing: border-box;
   background-color: ${(props: AppProps): string => props.theme.colors.darkGray} !important;
-  ${topRoundedCorners}
+  border-radius: ${tableConsts.topRoundedCorners};
+  text-transform: uppercase;
 `;
 const StrategyDescriptionRow = styled(Row)`
   ${rowCss}
@@ -114,7 +123,7 @@ const StrategyDescriptionRow = styled(Row)`
 `;
 const StyledRow = styled(Row)`
     ${rowCss}
-    ${topRoundedCorners}
+    border-radius: ${tableConsts.topRoundedCorners};
     padding: 0;
 `;
 export const DataHeaderRow: React.FC<IDataHeaderRow> = ({tokenType, strategyName, ...rowProps}) => {

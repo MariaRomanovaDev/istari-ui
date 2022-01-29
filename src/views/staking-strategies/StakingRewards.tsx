@@ -4,20 +4,11 @@ import { useStore } from '../../stores/rootStore';
 import styled, { css } from 'styled-components';
 import { Row } from 'react-grid-system';
 import { AppProps } from '../../App';
-import { grayText, rowCss, Container, CornerCell, DataCol, DataHeaderRow, DataRow, HeadersCol, TotalRow, topRoundedCorners } from '../components/Table';
+import { rowCss, Container, CornerCell, DataCol, DataHeaderRow, DataRow, HeadersCol, TotalRow, tableConsts } from '../components/Table';
 import { NextStepButton } from '../components/Button';
-// @ts-ignore: TS2307: Cannot find module '-!svg-react-loader?name=Icon!../../icons/down-arrow.svg' or its corresponding type declarations.
-import DownArrow from '-!svg-react-loader?name=Icon!../../icons/down-arrow.svg';
-import { Button } from '../components';
-
-const StyledDownArrow = styled(DownArrow)`
-  fill: ${(props: AppProps): string => props.theme.colors.green};
-  height: 30px;
-  display: block;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  padding: 10px;
-`;
+// @ts-ignore: TS2307: Cannot find module '-!svg-react-loader?name=Icon!../../icons/info.svg' or its corresponding type declarations.
+import Info from '-!svg-react-loader?name=Icon!../../icons/info.svg';
+import { Button, DownArrow } from '../components';
 
 const StakeEgldCell = styled(Row)`
   height: 80px;
@@ -28,7 +19,7 @@ const StakeEgldCell = styled(Row)`
 `;
 
 const Header = styled.div`
-  ${grayText}
+  color: ${tableConsts.grayTableTextColor};
   font-size: 2rem;
   text-align: center;
   width: 100%;
@@ -51,7 +42,7 @@ const ProfitCell = styled(Row)`
   }
   
   .description {
-    ${grayText}
+    color: ${tableConsts.grayTableTextColor};
     font-size: 14px;
     align-self: flex-start;
     padding-top: 5px;
@@ -60,8 +51,8 @@ const ProfitCell = styled(Row)`
 
 const BeautyContainerElement = styled.div`
   position: absolute;
-  height: calc(100% - 150px);
-  top: 150px;
+  height: calc(100% - ${tableConsts.dataHeaderLength});
+  top: ${tableConsts.dataHeaderLength};
   left: 0;
   right: 0;
   bottom: 0;
@@ -81,7 +72,11 @@ const BeautyDataColElement = styled.div`
 
 const BeautyDataFirstColElement = styled(BeautyDataColElement)`
   bottom: 80px;
-  ${topRoundedCorners}
+  border-radius: ${tableConsts.topRoundedCorners};
+`;
+
+const StyledContainer = styled(Container)`
+  padding-bottom: 60px;
 `;
 
 const getFormattedPercent = (profit: string): string => {
@@ -101,11 +96,11 @@ const StakingRewards = observer((): JSX.Element  => {
   return (
     <>
       <Header>Your Staking Rewards</Header>
-      <Container fluid>
+      <StyledContainer fluid>
         <Row>
           <BeautyContainerElement />
           <HeadersCol xl={6}>
-            <CornerCell>Total reward</CornerCell>
+            <CornerCell>Total reward<Info /></CornerCell>
             <DataRow>in EGLD tokens</DataRow>
             <DataRow>in MEX tokens</DataRow>
             <DataRow>in US $</DataRow>
@@ -141,9 +136,9 @@ const StakingRewards = observer((): JSX.Element  => {
             )
           })}
         </Row>
-      </Container>
+      </StyledContainer>
       <NextStepButton>Specify farming strategies</NextStepButton>
-      <StyledDownArrow />
+      <DownArrow />
     </>
   )
 });

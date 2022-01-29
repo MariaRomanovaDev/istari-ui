@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from './Select';
+import Select from '../../components/Select';
 
 interface Props {
   percent: number;
