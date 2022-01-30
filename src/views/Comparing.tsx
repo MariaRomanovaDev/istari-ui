@@ -3,6 +3,7 @@ import StakingStrategies from './staking-strategies/StakingStrategies';
 import { FirstStep, Step } from './components'
 import ChoosingStrategies from './strategies/ChoosingStrategies';
 import styled from 'styled-components';
+import { AppProps } from '../App';
 
 const Header = styled.header`
   height: 100px;
@@ -46,6 +47,26 @@ const Header = styled.header`
   }
 `;
 
+const Breadcrumbs = styled.div`
+  width: ${(props: AppProps): string => props.theme.size.contentWidth};
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+  font-size: 18px;
+  
+  a {
+    text-decoration: none;
+    color: white;
+    
+    &:first-child {
+      color: ${(props: AppProps): string => props.theme.colors.lightGreen};
+    }
+  }
+  span {
+    color: ${(props: AppProps): string => props.theme.colors.lightGray};
+  }
+`;
+
 const Comparing: React.FC = () => {
   return (
     <>
@@ -54,6 +75,7 @@ const Comparing: React.FC = () => {
           <a href="/"><img alt="Company's logo" src="https://staging.entity.global/static/media/logo.177bbda6.png" /></a>
         </nav>
       </Header>
+      <Breadcrumbs><a href="/">Home</a><span>{' > '}</span><a href="/">Reward Strategies</a></Breadcrumbs>
       <FirstStep>
         <ChoosingStrategies />
       </FirstStep>

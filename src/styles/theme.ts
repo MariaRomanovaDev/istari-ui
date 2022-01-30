@@ -12,6 +12,9 @@ export interface Theme {
     shadedGreen: string;
     lightGreen: string;
     green: string;
+  },
+  size: {
+    contentWidth: string;
   }
 }
 
@@ -29,6 +32,9 @@ const theme: Theme = {
     shadedGreen: '#79df85',
     lightGreen: '#86fe94',
     green: '#83ff8c',
+  },
+  size: {
+    contentWidth: '1400px'
   }
 };
 
