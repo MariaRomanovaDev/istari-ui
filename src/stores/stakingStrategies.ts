@@ -16,9 +16,24 @@ const StakingStrategies = types.
       if (!resp.ok) { throw yield resp.json() }
 
       // strategies should be ordered due to design
-      const strategies: IStakingStrategy[] = (yield resp.json()).sort((a:IStakingStrategy, b:IStakingStrategy) => {
+      let strategies = (yield resp.json()).sort((a:IStakingStrategy, b:IStakingStrategy) => {
         return a.order - b.order;
       });
+
+      // dirty fix due to backend returning NaN from time to time
+      // should be fixed on backend side
+      strategies = strategies.map((strategy: { [x: string]: string | number; }) => {
+        for (const i in strategy) {
+          if (strategy[i] !== "order" &&
+            strategy[i] !== "tokenType" &&
+            strategy[i] !== "strategyName" &&
+            isNaN(parseFloat(strategy[i] as string))) {
+            // eslint-disable-next-line no-param-reassign
+            strategy[i] = '0';
+          }
+        }
+        return strategy;
+      }) as IStakingStrategy[];
 
       self.stakingStrategies = cast(strategies.map(
         (strategy: IStakingStrategy) => StakingStrategy.create(strategy)
