@@ -2,7 +2,7 @@ import StakingProvider from '../stakingProvider';
 import { getSnapshot } from 'mobx-state-tree';
 
 describe('Price store:', () => {
-  it('should fetch both prices', () => {
+  it('can change provider is active or not', () => {
     const store = StakingProvider.create({
       identity: 'istary',
       isActive: false,

@@ -1,8 +1,8 @@
 import StrategyRange from '../strategyRange';
 import { getSnapshot } from 'mobx-state-tree';
 
-describe('Price store:', () => {
-  it('should fetch both prices', () => {
+describe('Range store:', () => {
+  it('create range values', () => {
     const store = StrategyRange.create({
       from: 2,
       to: 4,
